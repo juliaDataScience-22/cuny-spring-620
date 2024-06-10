@@ -1,0 +1,22 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+G = nx.krackhardt_kite_graph()
+
+labels = {
+    0: 'Beverly', 1: 'Andre', 2: 'Ed', 3: 'Diane', 4: 'Carol',
+    5: 'Garth', 6: 'Fernando', 7: 'Heather', 8: 'Ike', 9: 'Jane'
+}
+
+pos = nx.spring_layout(G)
+plt.figure(figsize=(8, 6))
+
+nx.draw_networkx_nodes(G, pos, node_color='skyblue', node_size=2000, node_shape='s', edgecolors='black', linewidths=2)
+nx.draw_networkx_edges(G, pos, edge_color='gray')
+
+for node, (x, y) in pos.items():
+    plt.text(x, y - 0.1, labels[node], fontsize=12, ha='center', color='black')
+
+plt.title("Krackhardt Kite Graph")
+plt.axis('off')
+plt.show()
